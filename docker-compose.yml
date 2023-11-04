@@ -1,21 +1,19 @@
 version: "3"
-
 services:
-  mc:
-    container_name: "mc-server"
+  minecraft:
+    container_name: minecraft-server
     image: itzg/minecraft-server
     ports:
       - 25565:25565
     environment:
       EULA: "TRUE"
-      VERSION: "1.19.4"
-      TYPE: "FORGE"
-      FORGE_VERSION: "45.0.66"
+      VERSION: "1.20.2"
+      TYPE: "PAPER"
       INIT_MEMORY: "1G"
-      MAX_MEMORY: "3G"
+      MAX_MEMORY: "4G"
       MOTD: "Servercito pa los cuates"
     tty: true
     stdin_open: true
     restart: unless-stopped
     volumes:
-      - ./minecraft-data:/data
+      - ./data:/data

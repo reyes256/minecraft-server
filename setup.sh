@@ -27,6 +27,7 @@ new_cron_job="0 3 * * * /opt/minecraft-server/scripts/backup_data.sh"
 
 updated_crontab="${existing_crontab}\n${new_cron_job}"
 
+sudo chmod +x /opt/minecraft-server/scripts/backup_data.sh
 echo -e "$updated_crontab" | crontab -
 echo "Cron job appended successfully."
 

@@ -12,6 +12,7 @@ services:
       INIT_MEMORY: "1G"
       MAX_MEMORY: "4G"
       MOTD: "Servercito pa los cuates"
+      DIFFICULTY: hard
       VIEW_DISTANCE: 20
       ICON: "https://raw.githubusercontent.com/reyes256/minecraft-server/main/server-icon.png"
     tty: true

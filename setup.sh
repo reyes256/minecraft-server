@@ -8,7 +8,7 @@ sudo apt install zip unzip -y
 cd /opt && \
 sudo git clone https://github.com/reyes256/minecraft-server.git && \
 git config --global --add safe.directory /opt/minecraft-server && \
-sudo chmod a+w /opt/minecraft-server/data/server.properties
+sudo chmod -R 777 minecraft-server
 
 #--------------------------
 #       Set local time

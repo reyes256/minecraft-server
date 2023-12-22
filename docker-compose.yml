@@ -13,6 +13,7 @@ services:
       MAX_MEMORY: "4G"
       MOTD: "Servercito pa los cuates"
       VIEW_DISTANCE: 10
+      ICON: "https://raw.githubusercontent.com/reyes256/minecraft-server/main/server-icon.png"
     tty: true
     stdin_open: true
     restart: unless-stopped

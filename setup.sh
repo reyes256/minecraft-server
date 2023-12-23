@@ -12,13 +12,7 @@ sudo chmod -R 777 minecraft-server
 
 #--------------------------
 #       Set local time
-# Disable all sync time services
-sudo systemctl stop systemd-timesyncd
-sudo systemctl stop chronyd
-sudo systemctl stop ntp
-
-read -p "Ingresa formato de fecha actual('2023-12-17 13:52:00'): " time
-sudo timedatectl set-time "${time}"
+sudo timedatectl set-timezone America/Phoenix
 
 #--------------------------
 #       Set Cronjob for world backups

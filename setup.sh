@@ -9,6 +9,7 @@ cd /opt && \
 sudo git clone https://github.com/reyes256/minecraft-server.git && \
 git config --global --add safe.directory /opt/minecraft-server && \
 sudo chmod -R 777 minecraft-server
+sudo chmod +x /opt/minecraft-server/scripts/*.sh
 
 #--------------------------
 #       Set local time

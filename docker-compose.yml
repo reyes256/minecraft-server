@@ -9,14 +9,13 @@ services:
       EULA: "TRUE"
       VERSION: "1.20.2"
       TYPE: "PAPER"
-      INIT_MEMORY: "1G"
-      MAX_MEMORY: "4G"
+      MEMORY: "6G"
       MOTD: "Servercito pa los cuates"
       DIFFICULTY: hard
       VIEW_DISTANCE: 20
       ICON: "https://raw.githubusercontent.com/reyes256/minecraft-server/main/server-icon.png"
     tty: true
     stdin_open: true
-    restart: unless-stopped
+    restart: on-failure:3
     volumes:
       - ./data:/data

@@ -3,9 +3,10 @@ import settings
 import discord
 from discord.ext import commands
 
-def run_command(command):
+def run_command(cmd):
     try:
-        output = subprocess.check_output(command, shell=True, text=True)
+        full_cmd = f"docker exec mc mc-send-to-console {cmd}"
+        output = subprocess.check_output(full_cmd, shell=True, text=True)
         return output
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
@@ -30,9 +31,7 @@ def main():
     async def say(ctx, *messages):
         full_message = " ".join(messages)
         
-        cmd = f"docker exec mc mc-send-to-console say {full_message}"
-        run_command(cmd)
-        
+        run_command(f"say {full_message}")
         await ctx.send("Mensaje enviado: " + " ".join(messages))
         
     @bot.command()
@@ -40,20 +39,16 @@ def main():
         if player == "none":
             return
         
-        cmd = f"docker exec mc mc-send-to-console op {player}"
-        run_command(cmd)
-        
-        await ctx.send(f"Fakin {player} ya es OP")
+        run_command(f"op {player}")
+        await ctx.send(f"{player} es ahora operador")
     
     @bot.command()
     async def deop(ctx, player="none"):
         if player == "none":
             return
         
-        cmd = f"docker exec mc mc-send-to-console deop {player}"
-        run_command(cmd)
-        
-        await ctx.send(f"Mamaste {player}, ya no eres OP")
+        run_command(f"deop {player}")
+        await ctx.send(f"{player} ya no es operador")
         
     bot.run(settings.DISCORD_API_TOKEN)
 

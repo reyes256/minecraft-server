@@ -5,15 +5,8 @@ services:
     image: itzg/minecraft-server
     ports:
       - 25565:25565
-    environment:
-      EULA: "TRUE"
-      VERSION: "1.20.2"
-      TYPE: "PAPER"
-      MEMORY: "6G"
-      MOTD: "Servercito pa los cuates"
-      DIFFICULTY: hard
-      VIEW_DISTANCE: 20
-      ICON: "https://raw.githubusercontent.com/reyes256/minecraft-server/main/server-icon.png"
+    env_file:
+      - .env
     tty: true
     stdin_open: true
     restart: on-failure:3

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update && \
-sudo apt install zip unzip -y
+sudo apt install zip unzip tmux -y
 
 #-------
 # Clone server repo

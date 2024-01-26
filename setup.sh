@@ -19,7 +19,7 @@ sudo timedatectl set-timezone America/Phoenix
 #--------------------------
 #       Set Cronjob for world backups
 existing_crontab=$(crontab -l 2>/dev/null)
-new_cron_job="0 3 * * * /opt/minecraft-server/scripts/backup_data.sh"
+new_cron_job="0 3 * * * sudo bash /opt/minecraft-server/scripts/backup_data.sh"
 
 updated_crontab="${existing_crontab}\n${new_cron_job}"
 

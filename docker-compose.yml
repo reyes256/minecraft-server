@@ -5,6 +5,7 @@ services:
     image: itzg/minecraft-server
     ports:
       - 25565:25565
+      - 7867:7867
     env_file:
       - .env
     tty: true
@@ -12,3 +13,4 @@ services:
     restart: on-failure:3
     volumes:
       - ./data:/data
+      - ./plugins:/data/plugins

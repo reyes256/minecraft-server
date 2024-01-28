@@ -1,4 +1,4 @@
-.PHONY: server-start server-stop backup-create backup-restore
+.PHONY: server-start server-stop server-shell backup-create backup-restore
 
 server-start:
 	@echo Starting Minecraft Server...
@@ -8,6 +8,10 @@ server-start:
 server-stop:
 	@echo Stopping Minecraft Server...
 	@sudo docker compose down
+
+server-shell:
+	@echo Connecting To Server Shell...
+	@sudo docker exec -i mc rcon-cli
 
 backup-create:
 	@echo Creating world map backup... 

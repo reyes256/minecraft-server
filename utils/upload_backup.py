@@ -26,7 +26,7 @@ def authenticate():
 
 def upload_file(file_path):
     """Upload a backup zip file to a google drive folder.
-    Returns : Id's of the zip uploaded
+    Returns : Id of the uploaded zip.
     """
     try:
         creds = authenticate()

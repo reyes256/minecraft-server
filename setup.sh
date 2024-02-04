@@ -15,6 +15,7 @@ sudo cp /opt/minecraft-server/.env.example /opt/minecraft-server/.env
 #--------------------------
 #       Set local time
 sudo timedatectl set-timezone America/Phoenix
+sudo timedatectl set-ntp true
 
 #--------------------------
 #       Set Cronjob for world backups

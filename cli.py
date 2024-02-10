@@ -70,6 +70,14 @@ def restart():
             "mc",
         ]
     )
+    run_shell_command(
+        [
+            "docker",
+            "logs",
+            "mc",
+            "-f",
+        ]
+    )
 
 
 @server.command()

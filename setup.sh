@@ -1,16 +1,12 @@
 #!/bin/bash
 
 sudo apt update && \
-sudo apt install zip unzip tmux make -y
+sudo apt install zip unzip tmux make python3.10-venv -y
 
-#-------
-# Clone server repo
-cd /opt && \
-sudo git clone https://github.com/reyes256/minecraft-server.git && \
-git config --global --add safe.directory /opt/minecraft-server
-sudo chmod -R a+w /opt/minecraft-server/
-sudo chmod +x /opt/minecraft-server/scripts/*.sh 
-sudo cp /opt/minecraft-server/.env.example /opt/minecraft-server/.env
+#--------------------------
+#       Create data directory
+sudo mkdir /opt/minecraft
+sudo chown $USER /opt/minecraft
 
 #--------------------------
 #       Set local time
@@ -19,14 +15,14 @@ sudo timedatectl set-ntp true
 
 #--------------------------
 #       Set Cronjob for world backups
-existing_crontab=$(crontab -l 2>/dev/null)
-new_cron_job="0 3 * * * sudo bash /opt/minecraft-server/scripts/backup_create.sh"
+# existing_crontab=$(crontab -l 2>/dev/null)
+# new_cron_job="0 3 * * * sudo bash /opt/minecraft-server/scripts/backup_create.sh"
 
-updated_crontab="${existing_crontab}\n${new_cron_job}"
+# updated_crontab="${existing_crontab}\n${new_cron_job}"
 
-sudo chmod +x /opt/minecraft-server/scripts/backup_create.sh
-echo -e "$updated_crontab" | crontab -
-echo "Cron job appended successfully."
+# sudo chmod +x /opt/minecraft-server/scripts/backup_create.sh
+# echo -e "$updated_crontab" | crontab -
+# echo "Cron job appended successfully."
 
 #--------------------------
 #       Install docker

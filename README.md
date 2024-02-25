@@ -17,19 +17,41 @@ pip install --editable .
 
 ## Usage
 
-### Server Commands
+| Command List |
+| :--- |
+| create |
+| start |
+| stop |
+| logs |
+<!-- | shell | -->
 
-Start Server
+
+### Create Server
+```sh
+mcli server create [-p,-v,-t,-m,-d,-vd]
+```
+Options
+- --port
+- --version
+- --type
+- --memory
+- --difficulty
+- --view-distance
+
+
+### Start Server
 ```sh
 mcli server start
 ```
 
-Stop Server
+### Stop Server
 ```sh
-mcli server stop
+mcli server stop [--all]
 ```
+Options
+- --all
 
-Restart Server
+### Stop Server
 ```sh
-mcli server restart
+mcli server logs
 ```

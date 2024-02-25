@@ -1,3 +1,4 @@
+import os
 import random
 import string
 import subprocess
@@ -18,7 +19,25 @@ def generate_id(n: int = 64) -> str:
     return alphanumeric_id
 
 
-def run_shell_command(commands):
+def create_server_directory(container_name: str):
+    """
+    Create a directory for the server data
+
+    Parameters:
+    - container_name (str): The name of the container.
+
+    Returns:
+    - None
+    """
+    server_directory_path = f"/opt/minecraft/{container_name}"
+
+    if not os.path.exists(server_directory_path):
+        os.makedirs(server_directory_path)
+
+    return server_directory_path
+
+
+def run_shell_command(args):
     """
     Run command on current platform
 
@@ -31,18 +50,28 @@ def run_shell_command(commands):
     Returns:
     - CompletedProcess: The result of the command execution.
     """
-    if isinstance(commands, str):
-        commands = [commands]
+    if isinstance(args, str):
+        args = [args]
 
     try:
-        result = subprocess.run(commands, check=True)
-        return result
+        process = subprocess.Popen(
+            args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+
+        for line in process.stdout:
+            if not line.startswith(">"):
+                print(line, end="")
+        for line in process.stderr:
+            if not line.startswith(">"):
+                print(line, end="")
+
+        return process.wait()
     except subprocess.CalledProcessError as e:
         print(f"Error executing shell command: {e}")
         raise
 
 
-def run_rcon_command(commands):
+def run_rcon_command(args):
     """
     Sends command to Minecraft Server cli using rcon
 
@@ -52,11 +81,11 @@ def run_rcon_command(commands):
     Returns:
     - None
     """
-    if isinstance(commands, str):
-        commands = [commands]
+    if isinstance(args, str):
+        args = [args]
 
     prefix_command = ["docker", "exec", "mc", "rcon-cli"]
-    full_command = prefix_command + commands
+    full_command = prefix_command + args
 
     try:
         subprocess.run(
